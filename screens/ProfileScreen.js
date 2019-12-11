@@ -14,6 +14,7 @@ import {
 import { MonoText } from '../components/StyledText';
 
 export default function ProfileScreen(props) {
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -21,7 +22,7 @@ export default function ProfileScreen(props) {
         contentContainerStyle={styles.contentContainer}>
         <Button
             title="Discover"
-            onPress={() => props.navigation.navigate('Discover')}
+            onPress={() => props.navigation.navigate('Camera')}
         />
         <View style={styles.welcomeContainer}>
           <Image

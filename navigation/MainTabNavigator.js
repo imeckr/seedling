@@ -8,6 +8,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import DiscoverScreen from '../screens/DiscoverScreen';
 import FindScreen from '../screens/FindScreen';
 import MessengerScreen from '../screens/MessengerScreen';
+import CameraScreen from '../screens/CameraScreen';
 
 const config = Platform.select({
     web: { headerMode: 'screen' },
@@ -17,6 +18,7 @@ const config = Platform.select({
 const ProfileStack = createStackNavigator(
     {
         Profile: ProfileScreen,
+        Camera: CameraScreen,
     },
     config
 );
