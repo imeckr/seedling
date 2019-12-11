@@ -10,6 +10,8 @@ import FindScreen from '../screens/FindScreen';
 import MessengerScreen from '../screens/MessengerScreen';
 import CameraScreen from '../screens/CameraScreen';
 import AddPlant from '../screens/AddPlant';
+import HealthScreen from '../screens/HealthScreen';
+import PlantScreen from '../screens/PlantScreen';
 
 const config = Platform.select({
     web: { headerMode: 'screen' },
@@ -21,6 +23,7 @@ const ProfileStack = createStackNavigator(
         Profile: ProfileScreen,
         Camera: CameraScreen,
         AddPlant: AddPlant,
+        PlantScreen: PlantScreen,
     },
     config
 );
@@ -89,10 +92,26 @@ MessengerStack.navigationOptions = {
 
 MessengerStack.path = '';
 
+const HealthStack = createStackNavigator(
+    {
+        Health: HealthScreen,
+    },
+    config
+);
+
+HealthStack.navigationOptions = {
+    tabBarLabel: 'Health',
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-pulse' : 'md-pulse'}/>
+    ),
+};
+
+HealthStack.path = '';
+
 
 const tabNavigator = createBottomTabNavigator({
     ProfileStack,
-
+    HealthStack,
     FindStack,
     MessengerStack,
 });

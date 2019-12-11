@@ -1,8 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { Component } from 'react';
-import { Button, Image, Platform, ScrollView, StyleSheet, Text, View, } from 'react-native';
-
-import { MonoText } from '../components/StyledText';
+import { Button, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import UserPlant from '../components/UserPlant';
 
 
 class ProfileScreen extends Component {
@@ -11,6 +10,29 @@ class ProfileScreen extends Component {
         super(props)
         this.state = {
             data: 'test',
+            plants: [
+                {
+                    name: 'Monstera',
+                    image: 'https://cb2.scene7.com/is/image/CB2/PottedMonsteraPlantSHS19',
+                    subtitle: 'Some more info here'
+                },
+                {
+                    name: 'Monstera',
+                    image: 'https://cb2.scene7.com/is/image/CB2/PottedMonsteraPlantSHS19',
+                    subtitle: 'Some more info here'
+                },
+                {
+                    name: 'Monstera',
+                    image: 'https://cb2.scene7.com/is/image/CB2/PottedMonsteraPlantSHS19',
+                    subtitle: 'Some more info here'
+                },
+                {
+                    name: 'Monstera',
+                    image: 'https://cb2.scene7.com/is/image/CB2/PottedMonsteraPlantSHS19',
+                    subtitle: 'Some more info here'
+                },
+
+            ]
 
         }
     }
@@ -22,7 +44,7 @@ class ProfileScreen extends Component {
     }
 
     render() {
-        const { data } = this.state
+        const { data, plants } = this.state
         return (
             <View style={styles.container}>
                 <ScrollView
@@ -33,7 +55,6 @@ class ProfileScreen extends Component {
                             source={require('../assets/images/profpic.jpg')}
                             style={styles.welcomeImage}
                         />
-
                     </View>
                     <View style={styles.container}>
                         <Text style={styles.name}>
@@ -49,6 +70,18 @@ class ProfileScreen extends Component {
                         <Text style={styles.title}>
                             My Plants
                         </Text>
+
+                        {plants ?
+                            plants.map((plant, index) => {
+                                return (<TouchableOpacity key={index} activeOpacity={0.8}
+                                                          onPress={() => this.props.navigation.navigate('AddPlant', {
+                                                              itemId: 86,
+                                                              otherParam: 'anything you want here',
+                                                          })}>
+                                    <UserPlant key={index} name={plant.name} image={plant.image}/>
+                                </TouchableOpacity>)
+                            }) :
+                            null}
                     </View>
                     <View style={styles.welcomeContainer}>
                         <Button
@@ -57,33 +90,34 @@ class ProfileScreen extends Component {
                                 itemId: 86,
                                 otherParam: 'anything you want here',
                             })}
+                            style={{ backgroundColor: 'green', width: 200, height: 50 }}
                         />
                     </View>
-                    <View style={styles.welcomeContainer}>
-                        <Button
-                            title="Discover"
-                            onPress={() => this.props.navigation.navigate('Discover', {
-                                itemId: 86,
-                                otherParam: 'anything you want here',
-                            })}
-                        />
-                    </View>
+                    {/*<View style={styles.welcomeContainer}>*/}
+                    {/*    <Button*/}
+                    {/*        title="Discover"*/}
+                    {/*        onPress={() => this.props.navigation.navigate('Discover', {*/}
+                    {/*            itemId: 86,*/}
+                    {/*            otherParam: 'anything you want here',*/}
+                    {/*        })}*/}
+                    {/*    />*/}
+                    {/*</View>*/}
 
 
                 </ScrollView>
 
-                <View style={styles.tabBarInfoContainer}>
-                    <Text style={styles.tabBarInfoText}>
-                        This is a tab bar. You can edit it in:
-                    </Text>
+                {/*<View style={styles.tabBarInfoContainer}>*/}
+                {/*    <Text style={styles.tabBarInfoText}>*/}
+                {/*        This is a tab bar. You can edit it in:*/}
+                {/*    </Text>*/}
 
-                    <View
-                        style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-                        <MonoText style={styles.codeHighlightText}>
-                            navigation/MainTabNavigator.js
-                        </MonoText>
-                    </View>
-                </View>
+                {/*    <View*/}
+                {/*        style={[styles.codeHighlightContainer, styles.navigationFilename]}>*/}
+                {/*        <MonoText style={styles.codeHighlightText}>*/}
+                {/*            navigation/MainTabNavigator.js*/}
+                {/*        </MonoText>*/}
+                {/*    </View>*/}
+                {/*</View>*/}
             </View>
         );
     }
@@ -178,8 +212,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     welcomeImage: {
-        width: 200,
-        height: 200,
+        width: 150,
+        height: 150,
         borderRadius: 99,
         resizeMode: 'contain',
 
