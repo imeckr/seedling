@@ -12,7 +12,7 @@ import {
 
 import { MonoText } from '../components/StyledText';
 
-export default function HomeScreen() {
+export default function ProfileScreen() {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -28,7 +28,6 @@ export default function HomeScreen() {
             style={styles.welcomeImage}
           />
         </View>
-
         <View style={styles.getStartedContainer}>
           <DevelopmentModeNotice />
 
@@ -69,7 +68,7 @@ export default function HomeScreen() {
   );
 }
 
-HomeScreen.navigationOptions = {
+ProfileScreen.navigationOptions = {
   header: null,
 };
 
