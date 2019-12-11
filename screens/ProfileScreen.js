@@ -6,18 +6,23 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  Button,
   TouchableOpacity,
   View,
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
 
-export default function ProfileScreen() {
+export default function ProfileScreen(props) {
   return (
     <View style={styles.container}>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
+        <Button
+            title="Discover"
+            onPress={() => props.navigation.navigate('Discover')}
+        />
         <View style={styles.welcomeContainer}>
           <Image
             source={
