@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Platform, ScrollView, StyleSheet, TextInput, View, } from 'react-native';
-import TrendingSection from '../components/TrendingSection';
-import ResultsSection from '../components/ResultsSection';
+import { Platform, ScrollView, StyleSheet, TextInput, View,Text } from 'react-native';
 
-class FindScreen extends Component {
+
+class ResultsSection extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -18,49 +17,30 @@ class FindScreen extends Component {
 
     onChangeText = (text) => {
         this.setState({
-            searchInput: text,
-            results: null
+            searchInput: text
         })
     }
 
     render() {
-        const { searchInput, results } = this.state
+        const { searchInput } = this.state
 
         return (
             <View style={styles.container}>
-
-                <TextInput
-                    style={{ height: 40, paddingLeft: 10, borderColor: 'gray', margin: 10, borderWidth: 1 }}
-                    onChangeText={text => this.onChangeText(text)}
-                    value={searchInput}
-
-                />
 
 
                 <ScrollView
                     style={styles.container}
                     contentContainerStyle={styles.contentContainer}>
 
-                    {results ?
-                        <ResultsSection/> :
-                        <TrendingSection/>
-                    }
-
+                    <Text>Results</Text>
                 </ScrollView>
 
-
-                <View style={styles.tabBarInfoContainer}>
-
-                </View>
             </View>
         )
     }
 }
 
-export default FindScreen
-FindScreen.navigationOptions = {
-    title: 'Search',
-};
+export default ResultsSection
 
 const styles = StyleSheet.create({
     container: {

@@ -1,6 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { Component } from 'react';
-import { Button, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
+import { Button, Image, Platform, ScrollView, StyleSheet, Text, View, } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
 
@@ -9,38 +9,51 @@ class ProfileScreen extends Component {
 
     constructor(props) {
         super(props)
+        this.state = {
+            data: 'test',
 
+        }
     }
 
-    componentDidMount () {
-        // fetch('http://192.168.178.82:5000/trending').then(res => {
-        // fetch('https://api.predic8.de/shop/')
-        //     .then(res => {
-        //       console.log(res.json())
-        //     })
+    componentDidMount() {
+        fetch('http://192.168.178.82:5000/trending')
+            .then(response => response.json())
+            .then(data => this.setState({ data }));
     }
 
     render() {
+        const { data } = this.state
         return (
             <View style={styles.container}>
                 <ScrollView
                     style={styles.container}
                     contentContainerStyle={styles.contentContainer}>
-
                     <View style={styles.welcomeContainer}>
                         <Image
-                            source={
-                                __DEV__
-                                    ? require('../assets/images/robot-dev.png')
-                                    : require('../assets/images/robot-prod.png')
-                            }
+                            source={require('../assets/images/profpic.jpg')}
                             style={styles.welcomeImage}
                         />
+
+                    </View>
+                    <View style={styles.container}>
+                        <Text style={styles.name}>
+                            Andy Meddows
+                        </Text>
+                    </View>
+                    <View style={styles.container}>
+                        <Text style={styles.credits}>
+                            Credits: 40
+                        </Text>
+                    </View>
+                    <View style={styles.container}>
+                        <Text style={styles.title}>
+                            My Plants
+                        </Text>
                     </View>
                     <View style={styles.welcomeContainer}>
                         <Button
-                            title="Camera"
-                            onPress={() => this.props.navigation.navigate('Camera', {
+                            title="Add Plant"
+                            onPress={() => this.props.navigation.navigate('AddPlant', {
                                 itemId: 86,
                                 otherParam: 'anything you want here',
                             })}
@@ -56,28 +69,7 @@ class ProfileScreen extends Component {
                         />
                     </View>
 
-                    <View style={styles.getStartedContainer}>
-                        <DevelopmentModeNotice/>
 
-                        <Text style={styles.getStartedText}>Get started by opening</Text>
-
-                        <View
-                            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-                            <MonoText>screens/HomeScreen.js</MonoText>
-                        </View>
-
-                        <Text style={styles.getStartedText}>
-                            Change this text and your app will automatically reload.
-                        </Text>
-                    </View>
-
-                    <View style={styles.helpContainer}>
-                        <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-                            <Text style={styles.helpLinkText}>
-                                Help, it didn’t automatically reload!
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
                 </ScrollView>
 
                 <View style={styles.tabBarInfoContainer}>
@@ -152,6 +144,31 @@ const styles = StyleSheet.create({
         lineHeight: 19,
         textAlign: 'center',
     },
+    credits: {
+        fontWeight: '800',
+        marginBottom: 20,
+        color: 'green',
+        fontSize: 18,
+        lineHeight: 19,
+        textAlign: 'center',
+    },
+    name: {
+        fontWeight: '900',
+        marginBottom: 20,
+        color: 'rgba(0,0,0,0.8)',
+        fontSize: 18,
+        lineHeight: 19,
+        textAlign: 'center',
+    },
+    title: {
+        fontWeight: '900',
+        marginBottom: 20,
+        color: 'rgba(0,0,0,0.8)',
+        fontSize: 18,
+        lineHeight: 19,
+        paddingLeft: 20,
+        textAlign: 'left',
+    },
     contentContainer: {
         paddingTop: 30,
     },
@@ -161,11 +178,11 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     welcomeImage: {
-        width: 100,
-        height: 80,
+        width: 200,
+        height: 200,
+        borderRadius: 99,
         resizeMode: 'contain',
-        marginTop: 3,
-        marginLeft: -10,
+
     },
     getStartedContainer: {
         alignItems: 'center',

@@ -9,6 +9,7 @@ import DiscoverScreen from '../screens/DiscoverScreen';
 import FindScreen from '../screens/FindScreen';
 import MessengerScreen from '../screens/MessengerScreen';
 import CameraScreen from '../screens/CameraScreen';
+import AddPlant from '../screens/AddPlant';
 
 const config = Platform.select({
     web: { headerMode: 'screen' },
@@ -19,6 +20,7 @@ const ProfileStack = createStackNavigator(
     {
         Profile: ProfileScreen,
         Camera: CameraScreen,
+        AddPlant: AddPlant,
     },
     config
 );
@@ -63,9 +65,9 @@ const FindStack = createStackNavigator(
 );
 
 FindStack.navigationOptions = {
-    tabBarLabel: 'Find',
+    tabBarLabel: 'Search',
     tabBarIcon: ({ focused }) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-search' : 'md-options'}/>
+        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-leaf' : 'md-leaf'}/>
     ),
 };
 
@@ -90,7 +92,7 @@ MessengerStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
     ProfileStack,
-    DiscoverStack,
+
     FindStack,
     MessengerStack,
 });
