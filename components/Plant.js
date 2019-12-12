@@ -1,26 +1,56 @@
-import React from 'react';
-import { Image, Platform, StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { Button, Image, Platform, StyleSheet, Text, View } from 'react-native';
+import * as firebase from 'firebase';
 
-export default function Plant(props) {
 
+class Plant extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            data: 'test',
+            plants: null
 
-    return (
-        <View style={styles.container}>
-            <View stye={styles.wrapper}>
-                <Image
-                    source={{ uri: props.image }}
-                    style={styles.plantImage}
-                />
+        }
+    }
+
+    delete = () => {
+        console.log(" + id",this.props.id)
+        firebase.database().ref('users/' + '249ht8f927hg9ß2gh9hg/plants/' + this.props.id).remove()
+    }
+
+    render() {
+
+        return (
+            <View style={styles.container}>
+                <View stye={styles.wrapper}>
+                    <Image
+                        source={{ uri: this.props.image }}
+                        style={styles.plantImage}
+                    />
+                </View>
+                <View style={{ width: 15 }}/>
+                <View stye={styles.wrapper}>
+                    <Text stye={styles.text}>
+                        {this.props.name}
+                    </Text>
+
+                </View>
+                <View stye={{
+                    ...styles.wrapper,
+                    flex: 1,
+                }}>
+                    <Button
+                        title="delete"
+                        onPress={() => this.delete()}
+                        style={{ backgroundColor: 'green', width: 200, height: 50 }}
+                    /></View>
             </View>
-            <View style={{ width: 15 }}/>
-            <View stye={styles.wrapper}>
-                <Text stye={styles.text}>
-                    {props.name}
-                </Text>
-            </View>
-        </View>
-    );
+        );
+    }
 }
+
+export default Plant
+
 const styles = StyleSheet.create({
     container: {
         marginBottom: 20,

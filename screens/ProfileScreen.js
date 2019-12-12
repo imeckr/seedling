@@ -10,43 +10,41 @@ class ProfileScreen extends Component {
         super(props)
         this.state = {
             data: 'test',
-            plants: [
-                {
-                    name: 'Monstera',
-                    image: 'https://cb2.scene7.com/is/image/CB2/PottedMonsteraPlantSHS19',
-                    subtitle: 'Some more info here'
-                },
-                {
-                    name: 'Monstera',
-                    image: 'https://cb2.scene7.com/is/image/CB2/PottedMonsteraPlantSHS19',
-                    subtitle: 'Some more info here'
-                },
-                {
-                    name: 'Monstera',
-                    image: 'https://cb2.scene7.com/is/image/CB2/PottedMonsteraPlantSHS19',
-                    subtitle: 'Some more info here'
-                },
-                {
-                    name: 'Monstera',
-                    image: 'https://cb2.scene7.com/is/image/CB2/PottedMonsteraPlantSHS19',
-                    subtitle: 'Some more info here'
-                },
-
-            ]
+            plants: null
 
         }
     }
+
 
     componentDidMount() {
         fetch('http://192.168.178.82:5000/trending')
             .then(response => response.json())
             .then(data => this.setState({ data }));
 
-            firebase.database().ref('users/' + "249ht8f927hg9ß2gh9hg").update({
-                name:"Andy Meddows"
-            });
+        let ref = firebase.database().ref('users/' + '249ht8f927hg9ß2gh9hg/plants');
+        ref.on('value', (snapshot) => {
+            console.log(snapshot.val())
+            let arr = []
+            snapshot.forEach(plant => {
+                arr.push({
+                    ...plant.val(),
+                    id: plant.key
+                })
+            })
+            console.log(arr)
+
+            arr.map(i => {
+                console.log(i)
+            })
+
+            this.setState({
+                plants: arr
+            })
+
+        });
 
     }
+
 
     render() {
         const { data, plants } = this.state
@@ -76,14 +74,16 @@ class ProfileScreen extends Component {
                             My Plants
                         </Text>
 
-                        {plants ?
-                            plants.map((plant, index) => {
-                                return (<TouchableOpacity key={index} activeOpacity={0.8}
+                        {plants && plants.length > 0 ?
+                            plants.map((plant) => {
+                                return (<TouchableOpacity key={plant.key} activeOpacity={0.8}
                                                           onPress={() => this.props.navigation.navigate('PlantScreen', {
-                                                              name: plant.name,
+                                                              name: plant.title,
                                                               image: plant.image,
+                                                              description: plant.description,
                                                           })}>
-                                    <Plant key={index} name={plant.name} image={plant.image}/>
+                                    <Plant id={plant.id}  key={plant.id} name={plant.title} image={plant.image}
+                                           description={plant.description}/>
                                 </TouchableOpacity>)
                             }) :
                             null}
