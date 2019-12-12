@@ -91,7 +91,7 @@ class ProfileScreen extends Component {
                     <View style={styles.welcomeContainer}>
                         <Button
                             title="Add Plant"
-                            onPress={() => this.props.navigation.navigate('AddPlant', {
+                            onPress={() => this.props.navigation.navigate('Camera', {
                                 itemId: 86,
                                 otherParam: 'anything you want here',
                             })}
