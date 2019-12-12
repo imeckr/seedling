@@ -3,7 +3,7 @@ import { Platform, ScrollView, StyleSheet, TextInput, View, } from 'react-native
 import TrendingSection from '../components/TrendingSection';
 import ResultsSection from '../components/ResultsSection';
 
-class FindScreen extends Component {
+class SearchScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -57,8 +57,8 @@ class FindScreen extends Component {
     }
 }
 
-export default FindScreen
-FindScreen.navigationOptions = {
+export default SearchScreen
+SearchScreen.navigationOptions = {
     title: 'Search',
 };
 

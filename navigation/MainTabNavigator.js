@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import TabBarIcon from '../components/TabBarIcon';
 import ProfileScreen from '../screens/ProfileScreen';
 import DiscoverScreen from '../screens/DiscoverScreen';
-import FindScreen from '../screens/FindScreen';
+import SearchScreen from '../screens/SearchScreen';
 import MessengerScreen from '../screens/MessengerScreen';
 import CameraScreen from '../screens/CameraScreen';
 import AddPlant from '../screens/AddPlant';
@@ -62,7 +62,7 @@ DiscoverStack.path = '';
 
 const FindStack = createStackNavigator(
     {
-        Find: FindScreen,
+        Find: SearchScreen,
     },
     config
 );
