@@ -22,12 +22,8 @@ class SearchScreen extends Component {
             .then(response => response.json())
             .then(results => {
                     this.setState({ results:results.users })
-
-
                 }
             )
-
-
     }
 
     onChangeText = (text) => {
@@ -62,7 +58,8 @@ class SearchScreen extends Component {
                                                          name: plant.plant.name,
                                                          image: 'http://192.168.178.84:8080' + plant.plant.img,
                                                          description: plant.plant.description,
-                                                         user: plant.user_name
+                                                         user: plant.user_name,
+                                                         userPlant:true
                                                      })}>
                                 <PlantResult
                                     name={plant.plant.name}
@@ -93,10 +90,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-
-
     },
-
     developmentModeText: {
         marginBottom: 20,
         color: 'rgba(0,0,0,0.4)',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Platform, Button,ScrollView, StyleSheet, Text, View, } from 'react-native';
+import { Button, Image, Platform, ScrollView, StyleSheet, Text, View, } from 'react-native';
 
 class PlantScreen extends Component {
     constructor(props) {
@@ -42,23 +42,28 @@ class PlantScreen extends Component {
                         <Text style={styles.name}>
                             {this.props.navigation.getParam('name', 'default value')}
                         </Text>
+
+
                         <Text style={{ paddingLeft: 20, paddingRight: 20 }}>
                             {this.props.navigation.getParam('description', 'default value')}
                         </Text>
                     </View>
-                    {this.props.userPlant ?
-                        <View stye={styles.wrapper}>
-                            <Text stye={styles.text}>
-                                {this.props.name}
+                    {this.props.navigation.getParam('userPlant', false) ?
+                        <View stye={styles.welcomeContainer}>
+                            <Text stye={styles.name}>
+                                Owner: {this.props.navigation.getParam('user', 'default value')}
                             </Text>
 
+                            <Button
+                                onPress={() => this.props.navigation.navigate('Messenger')}
+                                title="Ask for Seedling"
+                            />
                         </View>
+
+
                         : null
                     }
-                    <Button
-                        onPress={() => this.props.navigation.navigate("Messenger")}
-                        title="Ask for Seedling"
-                    />
+
                 </ScrollView>
             </View>
         )
