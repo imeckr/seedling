@@ -18,21 +18,19 @@ class SearchScreen extends Component {
 
 
     componentDidMount() {
-        fetch('http://192.168.178.84:8080/search')
+        fetch('http://10.11.5.66:8080/search')
             .then(response => response.json())
             .then(results => {
                     this.setState({ results:results.users })
                 }
             )
     }
-
     onChangeText = (text) => {
         this.setState({
             searchInput: text,
             results: null
         })
     }
-
     render() {
         const { searchInput, results } = this.state
 

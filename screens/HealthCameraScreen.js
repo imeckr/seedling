@@ -20,7 +20,7 @@ import {
   Octicons
 } from '@expo/vector-icons';
 
-export default class CameraScreen extends React.Component {
+export default class HealthCameraScreen extends React.Component {
   constructor(props) {
       super(props)
   }
