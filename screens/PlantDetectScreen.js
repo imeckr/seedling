@@ -22,7 +22,7 @@ export default class PlantDetectScreen extends React.Component {
   componentDidMount() {
     const formData = new FormData();
     let apiUrl = 'https://my-api.plantnet.org/v2/identify/all?api-key=2a10YRjMkq5dmzIYeHrJbsTe&include-related-images=true';
-    let localUri = this.props.navigation.getParam('photoPath');
+    let localUri = this.state.uploadedImage;
     let filename = localUri.split('/').pop();
     let match = /\.(\w+)$/.exec(filename);
     let type = match ? `image/${match[1]}` : `image`;
@@ -48,7 +48,6 @@ export default class PlantDetectScreen extends React.Component {
             familyName: responseJson.results[0].species.family.scientificNameWithoutAuthor
           },
           function() {
-              console.log(responseJson.results[0]);
           }
         );
       })
@@ -63,12 +62,6 @@ export default class PlantDetectScreen extends React.Component {
               <ScrollView
                   style={styles.container}
                   contentContainerStyle={styles.contentContainer}>
-                  <View style={styles.welcomeContainer}>
-                      <Image
-                          source={this.state.uploadedImage}
-                          style={styles.welcomeImage}
-                      />
-                  </View>
                   <View style={styles.container}>
                       <Text style={styles.name}>
                           {this.state.commonName}
