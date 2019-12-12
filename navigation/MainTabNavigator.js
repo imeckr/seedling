@@ -12,6 +12,7 @@ import CameraScreen from '../screens/CameraScreen';
 import AddPlant from '../screens/AddPlant';
 import HealthScreen from '../screens/HealthScreen';
 import PlantScreen from '../screens/PlantScreen';
+import PlantDetectScreen from '../screens/PlantDetectScreen';
 
 const config = Platform.select({
     web: { headerMode: 'screen' },
@@ -24,6 +25,7 @@ const ProfileStack = createStackNavigator(
         Camera: CameraScreen,
         AddPlant: AddPlant,
         PlantScreen: PlantScreen,
+        PlantDetect: PlantDetectScreen
     },
     config
 );
