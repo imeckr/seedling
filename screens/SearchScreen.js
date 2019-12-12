@@ -62,9 +62,11 @@ class SearchScreen extends Component {
                                                          name: plant.plant.name,
                                                          image: 'http://192.168.178.84:8080' + plant.plant.img,
                                                          description: plant.plant.description,
+                                                         user: plant.user_name
                                                      })}>
                                 <PlantResult
                                     name={plant.plant.name}
+                                    description={plant.plant.description}
                                     image={'http://192.168.178.84:8080' + plant.plant.img}
                                 />
                             </TouchableOpacity>

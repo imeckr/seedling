@@ -64,6 +64,7 @@ const FindStack = createStackNavigator(
     {
         Find: SearchScreen,
         GeneralPlantScreen: PlantScreen,
+        FindToMessenger: MessengerScreen,
     },
     config
 );

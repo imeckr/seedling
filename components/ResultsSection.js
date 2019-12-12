@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Platform, ScrollView, StyleSheet, TextInput, View,Text } from 'react-native';
+import PlantResult from './PlantResult';
 
 
 class ResultsSection extends Component {
@@ -39,7 +40,13 @@ class ResultsSection extends Component {
         )
     }
 }
+ResultsSection.defaultProps = {
+    userPlant: false,
 
+}
+ResultsSection.propTypes = {
+    userPlant: PropTypes.bool,
+}
 export default ResultsSection
 
 const styles = StyleSheet.create({

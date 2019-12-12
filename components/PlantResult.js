@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Image, Platform, StyleSheet, Text, View } from 'react-native';
-import * as firebase from 'firebase';
+import { Image, Platform, StyleSheet, Text, View } from 'react-native';
 
+import PropTypes from 'prop-types'
 
 class PlantResult extends Component {
     constructor(props) {
@@ -12,7 +12,6 @@ class PlantResult extends Component {
 
         }
     }
-
 
 
     render() {
@@ -32,12 +31,27 @@ class PlantResult extends Component {
                     </Text>
 
                 </View>
+                {this.props.userPlant ?
+                    <View stye={styles.wrapper}>
+                        <Text stye={styles.text}>
+                            {this.props.name}
+                        </Text>
 
+                    </View>
+                    : null
+                }
             </View>
         );
     }
 }
 
+PlantResult.defaultProps = {
+    userPlant: false,
+
+}
+PlantResult.propTypes = {
+    userPlant: PropTypes.bool,
+}
 export default PlantResult
 
 const styles = StyleSheet.create({
