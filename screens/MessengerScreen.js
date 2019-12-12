@@ -1,14 +1,27 @@
-import React from 'react';
-import { ExpoConfigView } from '@expo/samples';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { GiftedChat } from "react-native-gifted-chat";
 
-export default function MessengerScreen() {
-  /**
-   * Go ahead and delete ExpoConfigView and replace it with your content;
-   * we just wanted to give you a quick view of your config.
-   */
-  return <ExpoConfigView />;
+export default class MessengerScreen extends React.Component {
+  state = {
+    messages: [
+      {
+        _id: 1,
+        text: "Hello Plant owner",
+        createdAt: new Date()
+      }
+    ]
+  };
+render() {
+    return (
+      <View style={styles.container}>
+        <GiftedChat messages={this.state.messages} />
+      </View>
+    );
+  }
 }
-
-MessengerScreen.navigationOptions = {
-  title: 'Messenger',
-};
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+});
