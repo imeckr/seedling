@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Platform, ScrollView, StyleSheet, TextInput, View, } from 'react-native';
-import TrendingSection from '../components/TrendingSection';
-import ResultsSection from '../components/ResultsSection';
+import { Platform, ScrollView, StyleSheet, TextInput, TouchableOpacity, View, } from 'react-native';
+import PlantResult from '../components/PlantResult';
+import Plant from '../components/Plant';
 
 class SearchScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            searchInput: 'search'
+            results: []
         }
     }
 
@@ -15,6 +15,20 @@ class SearchScreen extends Component {
      * Go ahead and delete ExpoConfigView and replace it with your content;
      * we just wanted to give you a quick view of your config.
      */
+
+
+    componentDidMount() {
+        fetch('http://192.168.178.84:8080/search')
+            .then(response => response.json())
+            .then(results => {
+                    this.setState({ results:results.users })
+
+
+                }
+            )
+
+
+    }
 
     onChangeText = (text) => {
         this.setState({
@@ -41,9 +55,20 @@ class SearchScreen extends Component {
                     style={styles.container}
                     contentContainerStyle={styles.contentContainer}>
 
-                    {results ?
-                        <ResultsSection/> :
-                        <TrendingSection/>
+                    {results && results.length > 0 ?
+                        results.map(plant => {
+                            return <TouchableOpacity key={plant.key} activeOpacity={0.8}
+                                                     onPress={() => this.props.navigation.navigate('GeneralPlantScreen', {
+                                                         name: plant.plant.name,
+                                                         image: 'http://192.168.178.84:8080' + plant.plant.img,
+                                                         description: plant.plant.description,
+                                                     })}>
+                                <PlantResult
+                                    name={plant.plant.name}
+                                    image={'http://192.168.178.84:8080' + plant.plant.img}
+                                />
+                            </TouchableOpacity>
+                        }) : null
                     }
 
                 </ScrollView>

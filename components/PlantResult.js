@@ -1,89 +1,73 @@
 import React, { Component } from 'react';
-import { Button, Dimensions, Platform, StyleSheet, Text, View } from 'react-native';
-import { Camera } from 'expo-camera';
-
-const { width: winWidth, height: winHeight } = Dimensions.get('window');
-
-class HealthScreen extends Component {
+import { Button, Image, Platform, StyleSheet, Text, View } from 'react-native';
+import * as firebase from 'firebase';
 
 
+class PlantResult extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            searchInput: 'search'
+            data: 'test',
+            plants: null
+
         }
     }
 
-    /**
-     * Go ahead and delete ExpoConfigView and replace it with your content;
-     * we just wanted to give you a quick view of your config.
-     */
 
-    async componentDidMount() {
-        await Camera.requestPermissionsAsync();
-
-    }
-
-    startCheck =  () => {
-
-    }
 
     render() {
 
-        const { searchInput, results } = this.state
-
         return (
             <View style={styles.container}>
+                <View stye={styles.wrapper}>
+                    <Image
+                        source={{ uri: this.props.image }}
+                        style={styles.plantImage}
+                    />
+                </View>
+                <View style={{ width: 15 }}/>
+                <View stye={styles.wrapper}>
+                    <Text stye={styles.text}>
+                        {this.props.name}
+                    </Text>
 
-                {/*<ScrollView*/}
-                {/*    style={styles.container}*/}
-                {/*    contentContainerStyle={styles.contentContainer}>*/}
-
-                {/*    {results ?*/}
-                {/*        <ResultsSection/> :*/}
-                {/*        <TrendingSection/>*/}
-                {/*    }*/}
-
-                {/*</ScrollView>*/}
-
-
-                <Text style={styles.name}>
-                    GET A HEALTH CHECK
-                </Text>
-                <Text style={styles.name}>
-                    FOR YOUR PLANT
-                </Text>
-                <Button
-                    title="Take Picture"
-                    onPress={() =>      this.props.navigation.navigate('HealthCamera')}
-                    style={{ backgroundColor: 'green', width: 200, height: 50 }}
-                />
+                </View>
 
             </View>
-        )
+        );
     }
 }
 
-export default HealthScreen
-HealthScreen.navigationOptions = {
-    title: 'Health',
-};
+export default PlantResult
 
 const styles = StyleSheet.create({
     container: {
+        marginBottom: 20,
+        marginLeft: 40,
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#fff',
+        flexDirection: 'row',
     },
-    preview: {
-        height: winHeight,
-        width: winWidth,
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        right: 0,
-        bottom: 0,
+    wrapper: { flex: 1 },
+
+    text: {
+        marginBottom: 20,
+        color: 'rgba(0,0,0,0.8)',
+        fontSize: 22,
+        lineHeight: 19,
+        textAlign: 'center',
+    },
+    textWrapper: {
+        flex: 1,
+        margin: 10,
+        padding: 10,
+        backgroundColor: 'khaki'
+    },
+    imageWrapper: {},
+    plantImage: {
+        width: 80,
+        height: 80,
+        resizeMode: 'contain',
     },
     developmentModeText: {
         marginBottom: 20,
@@ -100,14 +84,7 @@ const styles = StyleSheet.create({
         lineHeight: 19,
         textAlign: 'center',
     },
-    name: {
-        fontWeight: '900',
-        marginBottom: 20,
-        color: 'rgba(0,0,0,0.8)',
-        fontSize: 18,
-        lineHeight: 19,
-        textAlign: 'center',
-    },
+
     title: {
         fontWeight: '900',
         marginBottom: 20,
@@ -125,13 +102,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 20,
     },
-    welcomeImage: {
-        width: 150,
-        height: 150,
-        borderRadius: 99,
-        resizeMode: 'contain',
 
-    },
     getStartedContainer: {
         alignItems: 'center',
         marginHorizontal: 50,

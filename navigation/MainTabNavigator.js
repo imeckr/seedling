@@ -63,6 +63,7 @@ DiscoverStack.path = '';
 const FindStack = createStackNavigator(
     {
         Find: SearchScreen,
+        GeneralPlantScreen: PlantScreen,
     },
     config
 );
@@ -79,6 +80,7 @@ FindStack.path = '';
 const MessengerStack = createStackNavigator(
     {
         Messenger: MessengerScreen,
+
     },
     config
 );
@@ -95,7 +97,7 @@ MessengerStack.path = '';
 const HealthStack = createStackNavigator(
     {
         Health: HealthScreen,
-        Camera: CameraScreen,
+        HealthCamera: CameraScreen,
     },
     config
 );
