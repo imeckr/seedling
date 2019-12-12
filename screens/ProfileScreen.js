@@ -74,9 +74,9 @@ class ProfileScreen extends Component {
                         {plants ?
                             plants.map((plant, index) => {
                                 return (<TouchableOpacity key={index} activeOpacity={0.8}
-                                                          onPress={() => this.props.navigation.navigate('AddPlant', {
-                                                              itemId: 86,
-                                                              otherParam: 'anything you want here',
+                                                          onPress={() => this.props.navigation.navigate('PlantScreen', {
+                                                              name: plant.name,
+                                                              image: plant.image,
                                                           })}>
                                     <UserPlant key={index} name={plant.name} image={plant.image}/>
                                 </TouchableOpacity>)

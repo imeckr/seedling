@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     wrapper: { flex: 1 },
+
     text: {
         marginBottom: 20,
         color: 'rgba(0,0,0,0.8)',

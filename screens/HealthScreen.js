@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Platform, ScrollView, StyleSheet, TextInput, View, } from 'react-native';
-import TrendingSection from '../components/TrendingSection';
-import ResultsSection from '../components/ResultsSection';
+import { Button, Dimensions, Platform, StyleSheet, Text, View } from 'react-native';
+import { Camera } from 'expo-camera';
+
+const { width: winWidth, height: winHeight } = Dimensions.get('window');
 
 class HealthScreen extends Component {
+
+
     constructor(props) {
         super(props)
         this.state = {
@@ -16,42 +19,47 @@ class HealthScreen extends Component {
      * we just wanted to give you a quick view of your config.
      */
 
-    onChangeText = (text) => {
-        this.setState({
-            searchInput: text,
-            results: null
-        })
+    async componentDidMount() {
+        await Camera.requestPermissionsAsync();
+
+    }
+
+    startCheck =  () => {
+
     }
 
     render() {
+
         const { searchInput, results } = this.state
 
         return (
             <View style={styles.container}>
 
-                <TextInput
-                    style={{ height: 40, paddingLeft: 10, borderColor: 'gray', margin: 10, borderWidth: 1 }}
-                    onChangeText={text => this.onChangeText(text)}
-                    value={searchInput}
 
+                {/*<ScrollView*/}
+                {/*    style={styles.container}*/}
+                {/*    contentContainerStyle={styles.contentContainer}>*/}
+
+                {/*    {results ?*/}
+                {/*        <ResultsSection/> :*/}
+                {/*        <TrendingSection/>*/}
+                {/*    }*/}
+
+                {/*</ScrollView>*/}
+
+
+                <Text style={styles.name}>
+                    GET A HEALTH CHECK
+                </Text>
+                <Text style={styles.name}>
+                    FOR YOUR LOVELY PLANT
+                </Text>
+                <Button
+                    title="Take Picture"
+                    onPress={() =>      this.props.navigation.navigate('Camera')}
+                    style={{ backgroundColor: 'green', width: 200, height: 50 }}
                 />
 
-
-                <ScrollView
-                    style={styles.container}
-                    contentContainerStyle={styles.contentContainer}>
-
-                    {results ?
-                        <ResultsSection/> :
-                        <TrendingSection/>
-                    }
-
-                </ScrollView>
-
-
-                <View style={styles.tabBarInfoContainer}>
-
-                </View>
             </View>
         )
     }
@@ -65,15 +73,50 @@ HealthScreen.navigationOptions = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#fff',
     },
-
+    preview: {
+        height: winHeight,
+        width: winWidth,
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
+    },
     developmentModeText: {
         marginBottom: 20,
         color: 'rgba(0,0,0,0.4)',
         fontSize: 14,
         lineHeight: 19,
         textAlign: 'center',
+    },
+    credits: {
+        fontWeight: '800',
+        marginBottom: 20,
+        color: 'green',
+        fontSize: 18,
+        lineHeight: 19,
+        textAlign: 'center',
+    },
+    name: {
+        fontWeight: '900',
+        marginBottom: 20,
+        color: 'rgba(0,0,0,0.8)',
+        fontSize: 18,
+        lineHeight: 19,
+        textAlign: 'center',
+    },
+    title: {
+        fontWeight: '900',
+        marginBottom: 20,
+        color: 'rgba(0,0,0,0.8)',
+        fontSize: 18,
+        lineHeight: 19,
+        paddingLeft: 20,
+        textAlign: 'left',
     },
     contentContainer: {
         paddingTop: 30,
@@ -84,11 +127,11 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     welcomeImage: {
-        width: 100,
-        height: 80,
+        width: 150,
+        height: 150,
+        borderRadius: 99,
         resizeMode: 'contain',
-        marginTop: 3,
-        marginLeft: -10,
+
     },
     getStartedContainer: {
         alignItems: 'center',

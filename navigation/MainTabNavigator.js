@@ -95,6 +95,7 @@ MessengerStack.path = '';
 const HealthStack = createStackNavigator(
     {
         Health: HealthScreen,
+        Camera: CameraScreen,
     },
     config
 );
