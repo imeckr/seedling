@@ -52,7 +52,7 @@ class HealthScreen extends Component {
                     GET A HEALTH CHECK
                 </Text>
                 <Text style={styles.name}>
-                    FOR YOUR LOVELY PLANT
+                    FOR YOUR PLANT
                 </Text>
                 <Button
                     title="Take Picture"

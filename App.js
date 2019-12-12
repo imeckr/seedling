@@ -4,10 +4,24 @@ import * as Font from 'expo-font';
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
+import * as firebase from 'firebase';
 import AppNavigator from './navigation/AppNavigator';
+const firebaseConfig = {
+  apiKey: "AIzaSyABBIy61mTG3TzgEIYJtBbezma7bQ5q008",
+  authDomain: "seedling-881a1.firebaseapp.com",
+  databaseURL: "https://seedling-881a1.firebaseio.com",
+  projectId: "seedling-881a1",
+  storageBucket: "seedling-881a1.appspot.com",
+  messagingSenderId: "750080205564",
+  appId: "1:750080205564:web:3b2bb3091e94d29ba7ed79"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 export default function App(props) {
+  // Initialize Firebase
+
+
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {

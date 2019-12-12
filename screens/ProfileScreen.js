@@ -1,8 +1,8 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { Component } from 'react';
 import { Button, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import UserPlant from '../components/UserPlant';
-
+import Plant from '../components/Plant';
+import * as firebase from 'firebase';
 
 class ProfileScreen extends Component {
 
@@ -41,6 +41,11 @@ class ProfileScreen extends Component {
         fetch('http://192.168.178.82:5000/trending')
             .then(response => response.json())
             .then(data => this.setState({ data }));
+
+            firebase.database().ref('users/' + "249ht8f927hg9ß2gh9hg").update({
+                name:"Andy Meddows"
+            });
+
     }
 
     render() {
@@ -63,7 +68,7 @@ class ProfileScreen extends Component {
                     </View>
                     <View style={styles.container}>
                         <Text style={styles.credits}>
-                            Credits: 40
+
                         </Text>
                     </View>
                     <View style={styles.container}>
@@ -78,7 +83,7 @@ class ProfileScreen extends Component {
                                                               name: plant.name,
                                                               image: plant.image,
                                                           })}>
-                                    <UserPlant key={index} name={plant.name} image={plant.image}/>
+                                    <Plant key={index} name={plant.name} image={plant.image}/>
                                 </TouchableOpacity>)
                             }) :
                             null}
