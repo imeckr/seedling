@@ -11,7 +11,7 @@ class DiscoverScreen extends Component {
   componentDidMount() {
 
 
-    fetch('http://192.168.178.82:5000/trending')
+    fetch('http://10.11.5.66:5000/trending')
         .then(response => response.json())
         .then(data => this.setState({ data }));
 

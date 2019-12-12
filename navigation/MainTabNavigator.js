@@ -9,9 +9,11 @@ import DiscoverScreen from '../screens/DiscoverScreen';
 import SearchScreen from '../screens/SearchScreen';
 import MessengerScreen from '../screens/MessengerScreen';
 import CameraScreen from '../screens/CameraScreen';
+import HealthCameraScreen from '../screens/HealthCameraScreen';
 import AddPlant from '../screens/AddPlant';
 import HealthScreen from '../screens/HealthScreen';
 import PlantScreen from '../screens/PlantScreen';
+import CheckedPlant from '../screens/CheckedPlant';
 import PlantDetectScreen from '../screens/PlantDetectScreen';
 
 const config = Platform.select({
@@ -100,7 +102,8 @@ MessengerStack.path = '';
 const HealthStack = createStackNavigator(
     {
         Health: HealthScreen,
-        HealthCamera: CameraScreen,
+        HealthCamera: HealthCameraScreen,
+        CheckedPlant: CheckedPlant,
     },
     config
 );
